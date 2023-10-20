@@ -4,6 +4,7 @@ import { Textcomplete } from '@textcomplete/core';
 import { TextareaEditor } from '@textcomplete/textarea';
 
 import useConfig, { CustomEmojiConfig } from '@/core/useConfig';
+import { createImgProxyUrl } from '@/utils/imgProxy';
 
 const useEmojiComplete = () => {
   const { searchEmojis } = useConfig();
@@ -27,7 +28,7 @@ const useEmojiComplete = () => {
           template: (config: CustomEmojiConfig) => {
             const e = (
               <div class="flex gap-1 border-b px-2 py-1">
-                <img class="h-6 max-w-[3rem]" src={config.url} alt={config.shortcode} />
+                <img class="h-6 max-w-[3rem]" src={createImgProxyUrl(config.url, 128)} alt={config.shortcode} />
                 <div>{config.shortcode}</div>
               </div>
             ) as HTMLElement;

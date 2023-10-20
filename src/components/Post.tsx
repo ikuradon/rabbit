@@ -5,6 +5,7 @@ import useFormatDate from '@/hooks/useFormatDate';
 import { useTranslation } from '@/i18n/useTranslation';
 import useProfile from '@/nostr/useProfile';
 import npubEncodeFallback from '@/utils/npubEncodeFallback';
+import { createImgProxyUrl } from '@/utils/imgProxy';
 
 export type PostProps = {
   authorPubkey: string;
@@ -41,7 +42,7 @@ const Post: Component<PostProps> = (props) => {
           }}
         >
           <Show when={author()?.picture} keyed>
-            {(url) => <img src={url} alt="icon" class="h-full w-full rounded object-cover" />}
+            {(url) => <img src={createImgProxyUrl(url, 128)} alt="icon" class="h-full w-full rounded object-cover" />}
           </Show>
         </button>
         <div class="min-w-0 flex-auto">

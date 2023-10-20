@@ -27,6 +27,7 @@ import epoch from '@/utils/epoch';
 import npubEncodeFallback from '@/utils/npubEncodeFallback';
 import stripMargin from '@/utils/stripMargin';
 import timeout from '@/utils/timeout';
+import { createImgProxyUrl } from '@/utils/imgProxy';
 
 export type ProfileDisplayProps = {
   pubkey: string;
@@ -245,7 +246,7 @@ const ProfileDisplay: Component<ProfileDisplayProps> = (props) => {
       >
         {(bannerUrl) => (
           <div class="h-40 w-full shrink-0 sm:h-52">
-            <img src={bannerUrl} alt="header" class="h-full w-full object-cover" />
+            <img src={createImgProxyUrl(bannerUrl, 1000)} alt="header" class="h-full w-full object-cover" />
           </div>
         )}
       </Show>
@@ -255,7 +256,7 @@ const ProfileDisplay: Component<ProfileDisplayProps> = (props) => {
             <Show when={profileQuery.isFetched && profile()?.picture} keyed>
               {(pictureUrl) => (
                 <img
-                  src={pictureUrl}
+                  src={createImgProxyUrl(pictureUrl, 128)}
                   alt="user icon"
                   class="h-full w-full rounded-lg object-cover"
                 />

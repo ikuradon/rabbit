@@ -14,6 +14,7 @@ import useProfile from '@/nostr/useProfile';
 import usePubkey from '@/nostr/usePubkey';
 import ensureNonNull from '@/utils/ensureNonNull';
 import timeout from '@/utils/timeout';
+import { createImgProxyUrl } from '@/utils/imgProxy';
 
 export type ProfileEditProps = {
   onClose: () => void;
@@ -151,12 +152,12 @@ const ProfileEdit: Component<ProfileEditProps> = (props) => {
       <div>
         <Show when={banner().length > 0} fallback={<div class="h-24 shrink-0" />} keyed>
           <div class="h-40 w-full shrink-0 sm:h-52">
-            <img src={banner()} alt="header" class="h-full w-full object-cover" />
+            <img src={createImgProxyUrl(banner(), 1000)} alt="header" class="h-full w-full object-cover" />
           </div>
         </Show>
         <div class="ml-4 mt-[-64px] h-28 w-28 rounded-lg shadow-md">
           <Show when={picture().length > 0}>
-            <img src={picture()} alt="user icon" class="h-full w-full rounded-lg object-cover" />
+            <img src={createImgProxyUrl(picture(), 128)} alt="user icon" class="h-full w-full rounded-lg object-cover" />
           </Show>
         </div>
       </div>

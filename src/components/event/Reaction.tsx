@@ -12,6 +12,7 @@ import { reaction } from '@/nostr/event';
 import useEvent from '@/nostr/useEvent';
 import useProfile from '@/nostr/useProfile';
 import ensureNonNull from '@/utils/ensureNonNull';
+import { createImgProxyUrl } from '@/utils/imgProxy';
 
 type ReactionDisplayProps = {
   event: NostrEvent;
@@ -47,7 +48,7 @@ const ReactionDisplay: Component<ReactionDisplayProps> = (props) => {
           <div class="author-icon h-5 w-5 shrink-0 overflow-hidden object-cover">
             <Show when={profile()?.picture != null}>
               <img
-                src={profile()?.picture}
+                src={createImgProxyUrl(profile()?.picture, 128)}
                 alt="icon"
                 // TODO autofit
                 class="rounded"

@@ -16,6 +16,7 @@ import { useTranslation } from '@/i18n/useTranslation';
 import usePubkey from '@/nostr/usePubkey';
 import { simpleEmojiPackSchema, convertToEmojiConfig } from '@/utils/emojipack';
 import ensureNonNull from '@/utils/ensureNonNull';
+import { createImgProxyUrl } from '@/utils/imgProxy';
 
 type ConfigProps = {
   onClose: () => void;
@@ -288,7 +289,7 @@ const EmojiConfig = () => {
         <For each={Object.values(config().customEmojis)}>
           {({ shortcode, url }) => (
             <li class="flex items-center gap-2">
-              <img class="min-w-7 h-7 max-w-[128px]" src={url} alt={shortcode} />
+              <img class="min-w-7 h-7 max-w-[128px]" src={createImgProxyUrl(url, 128)} alt={shortcode} />
               <div class="flex-1 truncate">{shortcode}</div>
               <button class="h-3 w-3 shrink-0" onClick={() => removeEmoji(shortcode)}>
                 <XMark />

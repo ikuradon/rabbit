@@ -4,6 +4,8 @@ import HeartSolid from 'heroicons/24/solid/heart.svg';
 
 import { ReactionTypes } from '@/nostr/event/Reaction';
 
+import { createImgProxyUrl } from '@/utils/imgProxy';
+
 export type EmojiDisplayProps = {
   reactionTypes: ReactionTypes;
 };
@@ -21,7 +23,7 @@ const EmojiDisplay: Component<EmojiDisplayProps> = (props) => (
       {({ content }) => <span class="truncate">{content}</span>}
     </Match>
     <Match when={props.reactionTypes.type === 'CustomEmoji' && props.reactionTypes} keyed>
-      {({ shortcode, url }) => <img class="h-4 max-w-[3rem]" src={url} alt={`:${shortcode}:`} />}
+      {({ shortcode, url }) => <img class="h-4 max-w-[3rem]" src={createImgProxyUrl(url, 128)} alt={`:${shortcode}:`} />}
     </Match>
   </Switch>
 );

@@ -17,6 +17,7 @@ import { useRequestCommand } from '@/hooks/useCommandBus';
 import { textNote } from '@/nostr/event';
 import { type ParsedTextNoteNode } from '@/nostr/parseTextNote';
 import { isImageUrl, isVideoUrl } from '@/utils/url';
+import { createImgProxyUrl } from '@/utils/imgProxy';
 
 export type TextNoteContentDisplayProps = {
   event: NostrEvent;
@@ -113,7 +114,7 @@ const TextNoteContentDisplay = (props: TextNoteContentDisplayProps) => {
           return (
             <img
               class="inline-block h-8 max-w-[128px] align-middle"
-              src={emojiUrl}
+              src={createImgProxyUrl(emojiUrl, 128)}
               alt={item.content}
               title={item.shortcode}
             />
